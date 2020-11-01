@@ -6,13 +6,11 @@
 
 #include "opencv2/video/tracking.hpp"
 #include "opencv2/highgui/highgui.hpp"
-#include <cmath>
 
 using namespace std;
 using namespace cv;
 
 #define StateType Rect_<float>
-
 
 // This class represents the internel state of individual tracked objects observed as bounding box.
 class KalmanTracker
@@ -46,10 +44,11 @@ public:
 
 	StateType predict();
 	void update(StateType stateMat);
-	
+
 	StateType get_state();
 	StateType get_rect_xysr(float cx, float cy, float s, float r);
 
+	StateType lastRect;
 	static int kf_count;
 
 	int m_time_since_update;
@@ -66,8 +65,5 @@ private:
 
 	std::vector<StateType> m_history;
 };
-
-
-
 
 #endif

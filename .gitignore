@@ -3,6 +3,7 @@ build/
 data/
 mot_benchmark/
 output/
+mydata/
 
 *.jpg
 *.png
