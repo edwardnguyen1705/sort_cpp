@@ -1,0 +1,10 @@
+
+build/
+data/
+mot_benchmark/
+output/
+
+*.jpg
+*.png
+*.DS_Store
+*.vscode
