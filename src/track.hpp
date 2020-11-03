@@ -17,8 +17,8 @@ struct Bbox
     float score;
     int x1;
     int y1;
-    int x2;
-    int y2;
+    int w;
+    int h;
 };
 
 struct BoundingBox
@@ -26,7 +26,7 @@ struct BoundingBox
     Rect_<float> rect;
     BoundingBox(const Bbox &box)
     {
-        rect = Rect_<float>(box.x1, box.y1, box.x2, box.y2);
+        rect = Rect_<float>(box.x1, box.y1, box.w, box.h);
     }
 };
 
@@ -40,7 +40,7 @@ typedef struct TrackingBox
 struct TRACK
 {
 // global variables for counting
-#define CNUM 20
+#define CNUM 255 // max num. of people per frame
     int total_frames = 0;
     double total_time = 0.0;
 

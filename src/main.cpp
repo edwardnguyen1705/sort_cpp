@@ -34,7 +34,6 @@ int main(int argc, char **argv)
 		vector<BoundingBox> boxes;
 		vector<TrackingBox> detFrameData;
 
-		
 		for (int i = 0; i < detectionMat.rows; i++)
 		{
 			float confidence = detectionMat.at<float>(i, 2);
@@ -50,8 +49,8 @@ int main(int argc, char **argv)
 				bbox.score = confidence;
 				bbox.x1 = xLeftTop;
 				bbox.y1 = yLeftTop;
-				bbox.x2 = xRightBottom;
-				bbox.y2 = yRightBottom;
+				bbox.w = xRightBottom - xLeftTop;
+				bbox.h = yRightBottom - yLeftTop;
 				bboxes.push_back(bbox);
 			}
 		}
@@ -75,7 +74,7 @@ int main(int argc, char **argv)
 
 		for (TrackingBox it : tracking_results)
 		{
-			Rect object(it.box.x, it.box.y, it.box.width - it.box.x, it.box.height - it.box.y);
+			Rect object(it.box.x, it.box.y, it.box.width, it.box.height);
 			rectangle(frame, object, tracker.randColor[it.id % 255], 2);
 			putText(frame,
 					to_string(it.id),
