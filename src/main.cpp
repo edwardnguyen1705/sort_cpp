@@ -14,6 +14,7 @@ int main(int argc, char **argv)
 
 	VideoCapture cap(0);
 	int delay = 1;
+	int frame_id = 0;
 
 	while (1)
 	{
@@ -33,8 +34,7 @@ int main(int argc, char **argv)
 		vector<BoundingBox> boxes;
 		vector<TrackingBox> detFrameData;
 
-		int frame_id = 0;
-
+		
 		for (int i = 0; i < detectionMat.rows; i++)
 		{
 			float confidence = detectionMat.at<float>(i, 2);
